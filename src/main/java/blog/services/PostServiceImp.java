@@ -33,7 +33,7 @@ public class PostServiceImp implements PostService {
 
     @Override
     public List<Post> firstThreePosts() {
-        return posts.subList(0, 3);
+        return null;
     }
 
     @Override

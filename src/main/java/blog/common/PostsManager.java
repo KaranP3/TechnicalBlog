@@ -36,9 +36,24 @@ public class PostsManager {
         return (boolean) fileOperations.deleteFile(Constants.POST_FILE_PREFIX, postTitle);
     }
 
+//    public static void main(String[] args) {
+//
+//        PostsManager postsManager = new PostsManager();
+//        Post post = new Post();
+//        post.setTitle("Test");
+//        post.setBody("Content in test file");
+//        post.setDate(new Date());
+//        postsManager.writeToFile(post);
+//    }
+
     public Post writeToFile(final Post post) {
 
-        return (Post) fileOperations.writeToFile(Constants.POST_FILE_PREFIX, post, post.getTitle());
+        JDBCConnector jdbcConnector = JDBCConnector.getInstance();
+        String query = "insert into Posts(title, body, date) values( \' " + post.getTitle() + "\', \'"
+                + post.getBody() + "\',  \'08-09-2018\')";
+
+        jdbcConnector.execute(query);
+        return null;
     }
 
     public Post getPost(final String prefix) {
